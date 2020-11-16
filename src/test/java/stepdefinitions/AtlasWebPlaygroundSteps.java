@@ -1,5 +1,7 @@
 package stepdefinitions;
 
+import data.QuoteData;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -57,5 +59,23 @@ public class AtlasWebPlaygroundSteps {
   @When("User click button click to show table")
   public void userClickButtonClickToShowTable() {
     page.clickButtonShowTableAfterTenSec();
+  }
+
+  @When("User input quote and remember {string}")
+  public void userInputQuoteAndRemember(String quote) {
+    QuoteData.quote = quote;
+    page.inputQuote(quote);
+  }
+
+  @And("User select color and remember {string}")
+  public void userSelectColorAndRemember(String color) {
+    QuoteData.color = color.toLowerCase();
+    page.selectColor(color);
+  }
+
+  @Then("User see quote is equal with the inputted data")
+  public void userSeeQuoteIsEqualWithTheInputtedData() {
+    boolean isAppear = page.isQuoteWithColorVisible(QuoteData.quote, QuoteData.color);
+    Assert.assertTrue(isAppear);
   }
 }

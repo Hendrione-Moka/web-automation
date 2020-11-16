@@ -31,3 +31,11 @@ Feature: Atlas Feature
     And User click table view
     And User click button click to show table
     Then User see table quotes is appear
+
+
+  Scenario: user add quote (simulate test data)
+    Given User open atlas web playgroud
+    When User input quote and remember "There is a will there is a way"
+    And User select color and remember "Magenta"
+    And User click button add quote
+    Then User see quote is equal with the inputted data
